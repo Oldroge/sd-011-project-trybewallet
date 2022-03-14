@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { requestLogin } from '../actions';
 
-function Login() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +21,9 @@ function Login() {
       <label htmlFor="email-label">
         E-mail
         <input
+          type="email"
           data-testid="email-input"
+          name="email"
           onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
@@ -28,20 +31,21 @@ function Login() {
       <label htmlFor="password-label">
         Senha
         <input
+          type="password"
           data-testid="password-input"
+          name="password"
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
-
-      <button
-        type="submit"
-        disabled={ !validCredentials() }
-        onClick={ () => dispatch(requestLogin(email)) }
-      >
-        Entrar
-      </button>
+      <Link to="/carteira">
+        <button
+          type="submit"
+          disabled={ !validCredentials() }
+          onClick={ () => dispatch(requestLogin(email)) }
+        >
+          Entrar
+        </button>
+      </Link>
     </section>
   );
 }
-
-export default Login;
