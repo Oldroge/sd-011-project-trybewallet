@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import loginPage from '../pages/Login';
+import { Switch, Route } from 'react-router-dom';
+
+import Login from '../pages/Login';
+import walletPage from '../pages/Wallet';
 
 export default function Routes() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ loginPage } />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/" render={ () => <Login /> } />
+      <Route path="/carteira" component={ walletPage } />
+    </Switch>
   );
 }
